@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import classes from './Drawer.module.css';
 import Backdrop from '../../ui/backdrop/Backdrop';
+import {NavLink} from 'react-router-dom';
 
 const links = [
-  1, 2, 3
+  {to: '/', label: 'List', exact: true},
+  {to: '/auth', label: 'Auth', exact: false},
+  {to: '/quiz-creator', label: 'Create a quiz', exact: false}
 ];
 
 class Drawer extends Component {
@@ -13,9 +16,14 @@ class Drawer extends Component {
         <li
           key={index}
         >
-          <button>
-            {link}
-          </button>
+          <NavLink
+            to={link.to}
+            exact={link.exact}
+            activeClassName={classes.active}
+            onClick={this.props.onClose}
+          >
+            {link.label}
+          </NavLink>
         </li>
       )
     })

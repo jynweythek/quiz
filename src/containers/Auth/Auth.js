@@ -102,13 +102,11 @@ export default class Auth extends Component {
           value={ctrl.value}
           type={ctrl.type}
           label={ctrl.label}
-          errorMessage={ctrl.errorMessage}
           valid={ctrl.valid}
           touched={ctrl.touched}
           shouldValidate={!!ctrl.validation}
-          onChange={(event) => {
-            this.onChangeHandler(event, ctrlName)
-          }}
+          errorMessage={ctrl.errorMessage}
+          onChange={event => this.onChangeHandler(event, ctrlName)}
         />
       )
     })

@@ -1,23 +1,48 @@
 import React, {Component} from 'react';
 import classes from './QuizList.module.css';
 import {NavLink} from "react-router-dom";
+import axios from 'axios';
 
 export default class QuizList extends Component {
+  state ={
+    quizes: []
+  };
+
   renderQuizes = () => {
-    return [1, 2, 3].map((quiz, idx) => {
+    return this.state.quizes.map(quiz => {
       return (
-        <li key={idx}>
+        <li key={quiz.id}>
           <NavLink
-            to={'/quiz/' + quiz}
+            to={'/quiz/' + quiz.id}
           >
-            Test {quiz}
+            {quiz.name}
           </NavLink>
         </li>
       )
     })
   };
 
-  render () {
+  async componentDidMount() {
+    try {
+      const response = await axios.get('https://quiz-9218d-default-rtdb.firebaseio.com/quizes.json');
+      const quizes = [];
+
+      Object.keys(response.data).forEach((key, index) => {
+        quizes.push({
+          id: key,
+          name: `Test #${index + 1}`
+        })
+      });
+
+      this.setState({
+         quizes
+      })
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  render() {
     return (
       <div className={classes.QuizList}>
         <h1>List of the quizes</h1>

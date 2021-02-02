@@ -10,7 +10,7 @@ export default class QuizList extends Component {
     loading: true
   };
 
-  renderQuizes = () => {
+  renderQuizes() {
     return this.state.quizes.map(quiz => {
       return (
         <li key={quiz.id}>

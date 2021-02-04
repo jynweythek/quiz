@@ -3,6 +3,7 @@ import classes from './Auth.module.css';
 import Input from './../../components/ui/input/Input';
 import Button from './../../components/ui/button/Button';
 import axios from 'axios';
+import config from '../../config';
 
 function validateEmail(email) {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -49,7 +50,7 @@ export default class Auth extends Component {
 
     try {
       const response = await axios.post(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBEsxU2ztnH2FqhIepyfzsoTotkD4u2I1w',
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='.concat(config.API_KEY),
         authData);
       console.log(response.data);
     } catch (e) {
@@ -67,7 +68,7 @@ export default class Auth extends Component {
 
     try {
       const response = await axios.post(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBEsxU2ztnH2FqhIepyfzsoTotkD4u2I1w',
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='.concat(config.API_KEY),
         authData);
       console.log(response.data);
     } catch (e) {

@@ -48,10 +48,10 @@ class QuizCreator extends Component {
       id: this.props.quiz.length + 1,
       rightAnswerId: this.state.rightAnswerId,
       answers: [
-        {text: option1.value, id: option1.id},
-        {text: option2.value, id: option2.id},
-        {text: option3.value, id: option3.id},
-        {text: option4.value, id: option4.id}
+        {text: option1.value, id: +option1.value},
+        {text: option2.value, id: +option2.value},
+        {text: option3.value, id: +option3.value},
+        {text: option4.value, id: +option4.value}
       ]
     };
 
